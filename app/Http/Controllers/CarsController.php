@@ -13,7 +13,7 @@ class CarsController extends Controller
     public function index()
     {
         $cars=Car::where('name','=','Audi')
-        ->get();
+        ->firstOrFail();
         return view('cars.index',['cars'=>$cars]);
     }
 
