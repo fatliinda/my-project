@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Car;
 
 class CarsController extends Controller
 {
@@ -11,7 +12,9 @@ class CarsController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $cars=Car::where('name','=','Audi')
+        ->get();
+        return view('cars.index',['cars'=>$cars]);
     }
 
     /**

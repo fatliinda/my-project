@@ -16,4 +16,4 @@ use App\Http\Controllers\ProductsController;
 */
 
 
-Route::resource('/',CarsController::class);
+Route::resource('/cars',CarsController::class);
