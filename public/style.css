@@ -8,7 +8,16 @@
 }
 .center{
 
-    display:flex;
+   
     justify-content: center;
     text-align: center;
+}
+.button1{
+
+    background-color: aquamarine;
+    color:black;
+    
+}
+a{
+    text-decoration: none;
 }
