@@ -9,6 +9,13 @@
 
 @foreach ($cars as $car)
 <div class='center' >
+    <a href='/cars/{{ $car->id }}/edit'>Edit &rarr</a>
+    <form action="{{ route('cars.destroy', $car) }}" method="POST">
+    @csrf
+    @method('DELETE') <!-- Use the DELETE method to delete the resource -->
+    <button style="background-color: red" type="submit">Delete &rarr;</button>
+</form>
+
     <div >
     
 

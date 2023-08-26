@@ -42,6 +42,8 @@ class CarsController extends Controller
         'founded'=>$request->input('founded'),
         'description'=>$request->input('description')
       ]);
+      
+        return redirect('/cars');
     }
 
     /**
@@ -57,7 +59,10 @@ class CarsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       
+       $car= Car::find($id)->first();
+       
+        return view('cars.edit', ['car'=>$car]);
     }
 
     /**
@@ -65,14 +70,24 @@ class CarsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $car= Car::where('id',$id)->update([
+
+            'name'=>$request->input('name'),
+            'founded'=>$request->input('founded'),
+            'description'=>$request->input('description')
+          ]);
+          
+            return redirect('/cars');
+        }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Car $car)
     {
-        //
+        
+        $car->delete();
+    return redirect()->route('cars.index');
     }
 }
