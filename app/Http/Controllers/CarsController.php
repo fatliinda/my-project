@@ -31,17 +31,30 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-       // $car=New Car;
+           
+        $request->validate([
+            'name'=>'required|unique:cars',
+            'founded'=>'required|integer|min:0|max:2023',
+            'description'=>'required',
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048'
+        
+        ]);
+
+        $newImageName=time().'-'.$request->name. '.' . $request->image->extension();
+        $request->image->move(public_path('images'),$newImageName);
+      
+        // $car=New Car;
        //$car->name=$request->input('name');
        // $car->founded=$request->input('founded');
       //  $car->description=$request->input('description');
      //   $car->save();
       //  return redirect('/cars');
-      $car= Car::create([
+          $car= Car::create([
 
         'name'=>$request->input('name'),
         'founded'=>$request->input('founded'),
-        'description'=>$request->input('description')
+        'description'=>$request->input('description'),
+        'image_path' => $newImageName
       ]);
       
         return redirect('/cars');
